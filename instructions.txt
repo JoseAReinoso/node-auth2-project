@@ -1,0 +1,55 @@
+       Get database ready
+1-step : npm init -y (this creates the package.json)
+2 step : npm add knex sqlite3
+3 step: npm install -g knex  (this is to install globally in order to be able to use the knex command which allows to use migrate and seed)
+4 step: knex init  (this will build a knexfile.js)
+5 step: in that file we only will keep development, and add the pool setup if you are using foreign key
+6 step: Update your knexfile.js..see the one in this project as an example  ..make sure to create a data folder
+7 step: run knex migrate:make create-cars-table  (this will create migrate folder with first file in it)
+8 step: once you had typed your table do knex migrate:latest to create database // make sure y ou change filename in the knexfile to your name of preference.
+9 step: if you didnt like an update(ONLY IF YOU DECIDED THATS NOT WHAT YOU WANTED TO DO, and want to reverse a chance) --Run knex migrate:rollback
+10 once you have created your db, migrations, knexfile and seeds .. make sure to create a config.js file under data as well
+11 test database with SQlite
+
+    Get project files structure and what each file represents
+    
+0  npm install bcryptjs nodemon
+1   create a welcome folder with welcome-router.js / and folders with db name on it plus dbName-router.js and dbName-Model.js  / Create index
+1.5 create index.js file with express, helmet, welcomerouter, customized error using server use and server.listen to test your welcome enpoint using 
+npm run server to make sure basics are covered.
+2 the dbname-router.js file we will be creating the endpoints which will use our models
+3 the dbname-model.js file we will be creating re usuable funtions that will use sqlite3 syntax/ functionality to communicate with our db.
+4 create a folder named auth and files called auth-router.js and restricted-middleware.js
+5 the auth-router.js file you will use it for creating post request to login and register
+6. the restricted-middleware.js file you will use it to create a middleware that will restrict an user to have access to data unless they are validated
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Adding sessions and storage them as cooking for authentication + testing it
+-npm i express-session   - this is a library that helps handling sessions
+-import session on index.js or server.js  // const session = require("express-session")
+-call it on index.js or server.js like this =     server.use(session(sessionConfig))  -- See example on index on what to put in it.
+-setup up variable sessionConfig (see it done on the index.file)
+-go to the login endpoint and paste   --- " req.session.user = user "  right on top of the status(200) to save information about the user of the session and send it to the client
+-Go to insonmia and check that cookie is now showing on the cookie session when you login, You will see that under name it has the value setup by you on index file (in my case "token)
+and it has the long cookie value
+-Head over the restricted middleware, on the session that we are checking if it has an username and password, you will check for if it has a session and if it has a session.user in it.
+-notice how i comment out the code where i was checking if an user was authenticated or not based on username and password, thats because sessions is going to be used no authenticated
+-to test that cookie is now working to authenticate, go ahead login (you will see how it would show the cookie now instead of the welcome message), and try to get users in insonmia
+(if you have a limit session setup on the cookie, make sure its not expired before trying to get users again)
+
+Adding connect session knex to to add a session table in db in case its not there yet
+- npm install connect-session-knex
+-import connect-session-knex (see index file) - const KnexSessionStore = require("connect-session-knex")(session)
+-import database config file in index.js - const dbConfig = require("./data/config")
+-configure a " store " session inside of the sessionConfig const (see index.js file for reference)
+-to test it, login an user and then open your squlite software and see sessions where you will see a sid , sess and expire session with some data in it. This will delete
+after session expires or logout
+
+
+
+adding logout using sessions
+-simply follow code on logout endpoint and then test it in insonmia by login in, check that we are getting users, go back to sign out endpoint and go back to  get users endpoint 
+and make sure are no longer being returned.
+
+
