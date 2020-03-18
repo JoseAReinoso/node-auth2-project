@@ -25,7 +25,7 @@ npm run server to make sure basics are covered.
 
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Adding sessions for authentication
+Adding sessions for authentication + testing it
 -npm i express-session   - this is a library that helps handling sessions
 -import session on index.js or server.js  // const session = require("express-session")
 -call it on index.js or server.js like this =     server.use(session(sessionConfig))  -- See example on index on what to put in it.
@@ -33,4 +33,9 @@ Adding sessions for authentication
 -go to the login endpoint and paste   --- " req.session.user = user "  right on top of the status(200) to save information about the user of the session and send it to the client
 -Go to insonmia and check that cookie is now showing on the cookie session when you login, You will see that under name it has the value setup by you on index file (in my case "token)
 and it has the long cookie value
--
+-Head over the restricted middleware, on the session that we are checking if it has an username and password, you will check for if it has a session and if it has a session.user in it.
+-notice how i comment out the code where i was checking if an user was authenticated or not based on username and password, thats because sessions is going to be used no authenticated
+-to test that cookie is now working to authenticate, go ahead login (you will see how it would show the cookie now instead of the welcome message), and try to get users in insonmia
+(if you have a limit session setup on the cookie, make sure its not expired before trying to get users again)
+
+

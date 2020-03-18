@@ -16,7 +16,7 @@ const sessionConfig = {
 	secret: process.env.COOKIE_SECRET || "secret", // cryptographically sign the cookie
 	cookie: {
 		httpOnly: true, // disallow javascript from reading our cookie contents
-	// 	maxAge: 15 * 1000, // expire the cookie after 15 seconds
+	maxAge: 15 * 1000, // expire the cookie after 15 seconds
 	},
 
 }
