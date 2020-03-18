@@ -38,7 +38,18 @@ and it has the long cookie value
 -to test that cookie is now working to authenticate, go ahead login (you will see how it would show the cookie now instead of the welcome message), and try to get users in insonmia
 (if you have a limit session setup on the cookie, make sure its not expired before trying to get users again)
 
+Adding connect session knex to to add a session table in db in case its not there yet
+- npm install connect-session-knex
+-import connect-session-knex (see index file) - const KnexSessionStore = require("connect-session-knex")(session)
+-import database config file in index.js - const dbConfig = require("./data/config")
+-configure a " store " session inside of the sessionConfig const (see index.js file for reference)
+-to test it, login an user and then open your squlite software and see sessions where you will see a sid , sess and expire session with some data in it. This will delete
+after session expires or logout
+
+
+
 adding logout using sessions
 -simply follow code on logout endpoint and then test it in insonmia by login in, check that we are getting users, go back to sign out endpoint and go back to  get users endpoint 
 and make sure are no longer being returned.
+
 
