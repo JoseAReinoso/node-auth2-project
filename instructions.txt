@@ -22,3 +22,15 @@ npm run server to make sure basics are covered.
 4 create a folder named auth and files called auth-router.js and restricted-middleware.js
 5 the auth-router.js file you will use it for creating post request to login and register
 6. the restricted-middleware.js file you will use it to create a middleware that will restrict an user to have access to data unless they are validated
+
+
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Adding sessions for authentication
+-npm i express-session   - this is a library that helps handling sessions
+-import session on index.js or server.js  // const session = require("express-session")
+-call it on index.js or server.js like this =     server.use(session(sessionConfig))  -- See example on index on what to put in it.
+-setup up variable sessionConfig (see it done on the index.file)
+-go to the login endpoint and paste   --- " req.session.user = user "  right on top of the status(200) to save information about the user of the session and send it to the client
+-Go to insonmia and check that cookie is now showing on the cookie session when you login, You will see that under name it has the value setup by you on index file (in my case "token)
+and it has the long cookie value
+-

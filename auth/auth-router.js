@@ -34,9 +34,22 @@ router.post("/login", async (req, res, next) => {
                 message: "You shall not pass!"
             })
         }
+        //      our manual session implementation
+//      **********************************************
+// 		const authToken = Math.random()
+// 		sessions[authToken] = user.id
+// 
+// 		// res.setHeader("Authorization", authToken)
+// 		res.setHeader("Set-Cookie", `token=${authToken}; Path=/`)
+
+        // express-session does the above for us
+        
+        req.session.user = user
         res.json({
             message:`welcome ${user.username}!`
         })
+
+       
 
     }catch(error) {
         next(error)

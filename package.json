@@ -21,6 +21,7 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "express": "^4.17.1",
+    "express-session": "^1.17.0",
     "helmet": "^3.21.3",
     "knex": "^0.20.11",
     "nodeman": "^1.1.2",
