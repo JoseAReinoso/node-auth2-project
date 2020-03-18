@@ -56,9 +56,25 @@ router.post("/login", async (req, res, next) => {
     }
 })
 
-router.get("/logout", restricted(), (req, res, next) => {
+router.get("/logout",restricted(), (req, res, next) => {
+    // this will delete the session in the database and try to expire the cookie,
+	// though it's ultimately up to the client if they delete the cookie or not.
+	// but it becomes useless to them once the session is deleted server-side.
 
-    res.json({message:"You have sucessfully end your session!"}).end()
+    if(req.session) {
+        req.session.destroy(err => {
+            if (err) {
+                res.json({
+                    message: "error loging out the user, contact admin"
+                })
+            } else{
+                res.json({message:"You have sucessfully end your session!"}).end()
+            }
+        })
+    }
+      
+        
+    
 })
 
 

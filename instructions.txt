@@ -25,7 +25,7 @@ npm run server to make sure basics are covered.
 
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Adding sessions for authentication + testing it
+Adding sessions and storage them as cooking for authentication + testing it
 -npm i express-session   - this is a library that helps handling sessions
 -import session on index.js or server.js  // const session = require("express-session")
 -call it on index.js or server.js like this =     server.use(session(sessionConfig))  -- See example on index on what to put in it.
@@ -38,4 +38,7 @@ and it has the long cookie value
 -to test that cookie is now working to authenticate, go ahead login (you will see how it would show the cookie now instead of the welcome message), and try to get users in insonmia
 (if you have a limit session setup on the cookie, make sure its not expired before trying to get users again)
 
+adding logout using sessions
+-simply follow code on logout endpoint and then test it in insonmia by login in, check that we are getting users, go back to sign out endpoint and go back to  get users endpoint 
+and make sure are no longer being returned.
 
